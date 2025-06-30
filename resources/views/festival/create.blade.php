@@ -1,4 +1,3 @@
-<!-- resources/views/book/create.blade.php -->
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -36,7 +35,7 @@
                                 <x-input-error class="mt-2" :messages="$errors->get('date')" />
                             </div>
 
-
+                            
                             <!-- Submit Button -->
                             <div class="flex items-center gap-4">
                                 <x-primary-button>{{ __('Save') }}</x-primary-button>

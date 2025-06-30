@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Festivals') }}
@@ -25,7 +25,7 @@
                                     <td>{{ $festival->name }}</td>
                                     <td>{{ $festival->city }}</td>
                                     <td>{{ $festival->date }}</td>
-                                    <td><a href="/trip/{{ $festival->id }}">Click to see</a></td>
+                                    <td><a href="/festival/{{ $festival->id }}">Click to see</a></td>
                                 </tr>
                             @endforeach
                         </x-slot>
@@ -35,5 +35,5 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-layout>
 

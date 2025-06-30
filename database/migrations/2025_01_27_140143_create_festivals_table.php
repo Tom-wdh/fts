@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('festivals', function (Blueprint $table) {
             $table->id();
-            $table->timestamps(false);
+            $table->timestamps();
             $table->string('name', 100);
             $table->string('city');
             $table->string('date');

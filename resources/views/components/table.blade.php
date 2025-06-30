@@ -1,1 +1,1 @@
-<table class="min-w-full divide-y divide-gray-200">    <thead class="bg-gray-50">        {{ $thead }}    </thead>    <tbody class="bg-white divide-y divide-gray-200">        {{ $tbody }}    </tbody></table>
+<table class="min-w-full divide-y divide-indigo-400">    <thead class="bg-indigo-500">        {{ $thead }}    </thead>    <tbody class="bg-indigo-400 divide-y divide-indigo-600">        {{ $tbody }}    </tbody></table>

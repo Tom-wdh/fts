@@ -1,0 +1,54 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css">
+    <script src="{{ URL::asset('/build/assets/js/script.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/e69bb0c2cc.js" crossorigin="anonymous"></script>
+    
+    <title>Festival Travel System</title>
+</head>
+<div class="min-h-screen min-w-screen bg-gray-900">
+    <div class="mx-auto">
+        <header class="py-4 bg-indigo-700 flex justify-between items-center">
+            <nav class="hidden md:block">
+            </nav>
+            <h1 class="md:text-3xl text-2xl font-bold text-center absolute left-1/2 -translate-x-1/2">Festival Travel System</h1>
+            <div class="flex justify-end -translate-x-2">
+                <button onclick="toggleMenu()" class="w-2/12 hover:bg-indigo-800 rounded-full accountbtn md:block hidden" type="button">
+                    <img src="{{ URL::asset('/build/assets/img/account.png') }}" alt="Account">
+                </button>
+                <ul id="menuitem" class="hidden absolute bg-white shadow-lg rounded mt-10 h-[0px]">
+                    @if (Auth::check())
+                        <li class="mr-50">
+                            <a href="{{ route('profile.edit') }}"
+                                class="text-amber-800 hover:text-amber-600 text-center bg-amber-300 px-4 py-2 ml-4 block menutop">Profiel</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('logout') }}"
+                                class="text-amber-800 hover:text-amber-600 text-center bg-amber-300 px-4 py-2 ml-4 block menubottom">Log uit</a>
+                        </li>
+                    @else
+                    <li class="mr-50">
+                        <a href="{{ route('register') }}"
+                            class="text-amber-800 hover:text-amber-600 text-center bg-amber-300 px-4 py-2 ml-4 block menutop">Registreer</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('login') }}"
+                            class="text-amber-800 hover:text-amber-600 text-center bg-amber-300 px-4 py-2 ml-4 block menubottom">Log in</a>
+                    </li>
+                    @endif
+                </ul>
+            </div>
+    </div>
+    </header>
+    <main class="min-h-[90%] bg-indigo-300">
+        {{ $slot }}
+    </main>
+    <footer class="bg-indigo-500 py-4 sticky bottom-0">
+        <div class="container mx-auto text-center">
+            &copy; {{ date('Y') }} Festival Travel System. All rights reserved.
+        </div>
+    </footer>
+</div>

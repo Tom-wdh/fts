@@ -17,12 +17,12 @@ return new class extends Migration
             $table->unsignedBigInteger('festivalid');
             $table->string('time', 5);
             $table->string('city');
-            $table->float('price');
+            $table->decimal('price', 8, 2);
             $table->integer('points_to_give');
+            
             $table->foreign('festivalid')->references('id')->on('festivals')->onDelete('cascade');
         });
 
-        Schema::enableForeignKeyConstraints();
     }
 
     /**
