@@ -19,7 +19,17 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware('auth')->resource('festival', FestivalController::class);
-Route::middleware('auth')->resource('trip', TripController::class);
+Route::middleware('auth')->group(function (){
+Route::get('/festival', [FestivalController::class, 'index'])->name('festival.index');
+Route::get('/festival/create', [FestivalController::class, 'create'])->name('festival.create');
+Route::post('/festival', [FestivalController::class, 'store'])->name('festival.store');
+Route::get('/festival/{festival}', [FestivalController::class, 'show'])->name('festival.show');
+});
+
+Route::middleware('auth')->group(function (){
+Route::get('/trip/{festival}', [TripController::class, 'index'])->name('trip.index');
+Route::get('/trip/{festival}/create', [TripController::class, 'create'])->name('trip.create');
+Route::post('/trip/{festival}/store', [TripController::class, 'store'])->name('trip.store');
+});
 require __DIR__.'/auth.php';
 

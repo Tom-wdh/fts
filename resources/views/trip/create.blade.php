@@ -1,5 +1,5 @@
 <!-- resources/views/book/create.blade.php -->
-<x-app-layout>
+<x-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Create Trip') }}
@@ -9,10 +9,10 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+            <div class="p-4 sm:p-8 bg-indigo-700 shadow sm:rounded-lg">
                 <div class="max-w-xl">
                     <section>
-                        <form method="post" action="{{ route('trip.store') }}" class="mt-6 space-y-6">
+                        <form method="post" action="{{ route('trip.store', ['festival' => $festival]) }}" class="mt-6 space-y-6">
                             @csrf <!-- CSRF Protection -->
 
                             <!-- Title Input -->
@@ -56,10 +56,12 @@
                                     >{{ session('message') }}</p>
                                 @endif
                             </div>
+                            <input type="hidden" name="festivalid" value="{{ $festival }}">
+
                         </form>
                     </section>
                 </div>
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-layout>

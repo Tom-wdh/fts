@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Trip;
+use App\Models\Festival;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -18,7 +19,9 @@ class TripController extends Controller
     {
 
         // Fetch trips for the given festival_id
-        $trips = Trip::latest()->paginate(5);
+        $trips = Trip::where('festivalid', request()->route('festival'))
+            ->latest()
+            ->paginate(5);
         // Return the trips to a view
         return view('trip.index', compact('trips'))
             ->with(['i', (request()->input('page', 1) - 1) * 5, 'message' => 'Trips zijn opgehaald']
@@ -28,15 +31,15 @@ class TripController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($festival)
     {
-        return view('trip.create');
+        return view('trip.create', ['festival' => $festival]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, $festival)
     {
         $validated = $request->validate([
             'time' => 'required|string|max:5',
@@ -51,10 +54,10 @@ class TripController extends Controller
         $trip->city = $request->city;
         $trip->price = $request->price;
         $trip->points_to_give = $request->points_to_give;
-        $trip->fesivalid = $request->fesivalid;
+        $trip->festivalid = $request->festivalid;
         $trip->save();
 
-        return redirect()->route('trip.index')->with('message', 'Trip created successfully.');
+        return redirect()->route('trip.index', ['festival' => $festival])->with('message', 'Trip created successfully.');
 
     }
 

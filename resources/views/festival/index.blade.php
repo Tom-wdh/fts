@@ -14,17 +14,14 @@
                         <x-slot name="thead">
                             <tr>
                                 <th style="width: 200px;">Name</th>
-                                <th style="width: 200px;">City</th>
-                                <th style="width: 200px;">Date</th>
-                                <th style="width: 200px;">Trips</th>
+                                <th style="width: 200px;">Information:</th>
                             </tr>
                         </x-slot>
                         <x-slot name="tbody">
                             @foreach ($festivals as $festival)
                                 <tr>
                                     <td>{{ $festival->name }}</td>
-                                    <td>{{ $festival->city }}</td>
-                                    <td>{{ $festival->date }}</td>
+
                                     <td><a href="/festival/{{ $festival->id }}">Click to see</a></td>
                                 </tr>
                             @endforeach

@@ -53,7 +53,7 @@ class FestivalController extends Controller
      */
     public function show(Festival $festival)
     {
-        //
+        return view('festival.show', compact('festival'));
     }
 
     /**

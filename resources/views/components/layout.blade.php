@@ -1,15 +1,18 @@
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css">
+    <meta name="viewport" content="width=device-width height=device-height">
     <script src="{{ URL::asset('/build/assets/js/script.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://kit.fontawesome.com/e69bb0c2cc.js" crossorigin="anonymous"></script>
-    
     <title>Festival Travel System</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden; /* Prevents scrolling */
+        }
+    </style>
 </head>
-<div class="min-h-screen min-w-screen bg-gray-900">
+<div class="min-h-screen bg-gray-900">
     <div class="mx-auto">
         <header class="py-4 bg-indigo-700 flex justify-between items-center">
             <nav class="hidden md:block">
@@ -26,8 +29,10 @@
                                 class="text-amber-800 hover:text-amber-600 text-center bg-amber-300 px-4 py-2 ml-4 block menutop">Profiel</a>
                         </li>
                         <li>
-                            <a href="{{ route('logout') }}"
-                                class="text-amber-800 hover:text-amber-600 text-center bg-amber-300 px-4 py-2 ml-4 block menubottom">Log uit</a>
+                            <form method="POST" action="{{  route('logout') }}">
+                                @csrf
+                                <button type="submit" class="text-amber-800 hover:text-amber-600 text-center bg-amber-300 px-4 py-2 ml-4 block menubottom">Log uit</button>
+                            </form>
                         </li>
                     @else
                     <li class="mr-50">

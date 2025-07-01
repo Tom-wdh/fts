@@ -44,9 +44,9 @@
                 {{ __('Already registered?') }}
             </a>
 
-            <x-primary-button class="ms-4">
-                {{ route('festival.index') }}
-            </x-primary-button>
+            <button class="ms-4 bg-indigo-300 rounded-md text-gray-800 font-semibold py-2 px-4 hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
+                {{ __('Register') }}
+            </button>
         </div>
     </form>
 </x-guest-layout>
