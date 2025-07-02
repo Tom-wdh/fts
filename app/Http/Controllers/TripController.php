@@ -48,13 +48,14 @@ class TripController extends Controller
             'points_to_give' => 'required|integer|max:25',
         ]);
 
-        // Create a new book record
+
         $trip = new Trip();
         $trip->time = $request->time;
         $trip->city = $request->city;
         $trip->price = $request->price;
         $trip->points_to_give = $request->points_to_give;
         $trip->festivalid = $request->festivalid;
+        $trip->seats = $request->seats;
         $trip->save();
 
         return redirect()->route('trip.index', ['festival' => $festival])->with('message', 'Trip created successfully.');
@@ -66,7 +67,7 @@ class TripController extends Controller
      */
     public function show(Trip $trip)
     {
-        //
+        return view('trip.show', compact('trip'));
     }
 
     /**
@@ -92,6 +93,7 @@ class TripController extends Controller
                 'city' => 'required',
                 'price' => 'required',
                 'points_to_give' => 'required',
+                'seats' => 'required',
             ]);
             if ($trip->id === null) {
                 Trip::create($req);

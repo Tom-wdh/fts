@@ -17,6 +17,7 @@
                                 <th style="width: 200px;">City</th>
                                 <th style="width: 200px;">Price</th>
                                 <th style="width: 200px;">Points</th>
+                                <th></th>
                             </tr>
                         </x-slot>
                         <x-slot name="tbody">
@@ -26,7 +27,8 @@
                                     <td>{{ $trip->city }}</td>
                                     <td>{{ $trip->price }}</td>
                                     <td>{{ $trip->points_to_give }}</td>
-                                    </td>
+                                    <td><a href="/trip/{{ $trip->id }}/show" class="bg-indigo-500 hover:bg-indigo-700 py-1 px-2 rounded mb-2">{{ __('Boek') }}</a></td>
+                                   
                                 </tr>
                             @endforeach
                         </x-slot>

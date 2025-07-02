@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function (){
 Route::get('/trip/{festival}', [TripController::class, 'index'])->name('trip.index');
 Route::get('/trip/{festival}/create', [TripController::class, 'create'])->name('trip.create');
 Route::post('/trip/{festival}/store', [TripController::class, 'store'])->name('trip.store');
+Route::get('/trip/{trip}/show', [TripController::class, 'show'])->name('trip.show');
 });
 require __DIR__.'/auth.php';
 

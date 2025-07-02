@@ -14,6 +14,7 @@ class Trip extends Model
         'city',
         'price',
         'points_to_give',
+        'seats',
         ];
 
 

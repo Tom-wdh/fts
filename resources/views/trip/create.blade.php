@@ -1,4 +1,3 @@
-<!-- resources/views/book/create.blade.php -->
 <x-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -40,6 +39,13 @@
                                 <x-input-label for="points_to_give" :value="__('Points')" />
                                 <x-text-input id="points_to_give" name="points_to_give" type="text" class="mt-1 block w-full" :value="old('points_to_give')" required autocomplete="points_to_give" />
                                 <x-input-error class="mt-2" :messages="$errors->get('points_to_give')" />
+                            </div>
+
+                            <!-- Seats Input -->
+                            <div>
+                                <x-input-label for="seats" :value="__('Seats')" />
+                                <x-text-input id="seats" name="seats" type="number" class="mt-1 block w-full" :value="old('seats')" required autocomplete="seats" />
+                                <x-input-error class="mt-2" :messages="$errors->get('seats')" />
                             </div>
 
 

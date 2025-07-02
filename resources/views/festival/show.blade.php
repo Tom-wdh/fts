@@ -13,7 +13,8 @@
                     <h1 class="text-3xl font-bold">{{ $festival->name }}</h1>
                     <p><strong>City:</strong> {{ $festival->city }}</p>
                     <p><strong>Date:</strong> {{ $festival->date }}</p>
-                    <a class='bg-amber-300 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mb-4'
+                    <br>
+                    <a class='bg-indigo-300 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded mb-4'
                     href='/trip/{{ $festival->id }}'>Klik hier om trip te bestellen</a>
                 </div>
             </div>

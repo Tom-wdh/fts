@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('city');
             $table->decimal('price', 8, 2);
             $table->integer('points_to_give');
+            $table->integer('seats');
             
             $table->foreign('festivalid')->references('id')->on('festivals')->onDelete('cascade');
         });
