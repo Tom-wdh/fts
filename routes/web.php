@@ -31,6 +31,7 @@ Route::get('/trip/{festival}', [TripController::class, 'index'])->name('trip.ind
 Route::get('/trip/{festival}/create', [TripController::class, 'create'])->name('trip.create');
 Route::post('/trip/{festival}/store', [TripController::class, 'store'])->name('trip.store');
 Route::get('/trip/{trip}/show', [TripController::class, 'show'])->name('trip.show');
+Route::post('/trip/{trip}/book', [TripController::class, 'book'])->name('trip.book');
 });
 require __DIR__.'/auth.php';
 

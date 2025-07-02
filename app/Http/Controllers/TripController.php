@@ -15,11 +15,12 @@ class TripController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index($festival): View
     {
 
         // Fetch trips for the given festival_id
         $trips = Trip::where('festivalid', request()->route('festival'))
+            ->where('seats', '>', 0)
             ->latest()
             ->paginate(5);
         // Return the trips to a view
@@ -120,5 +121,19 @@ class TripController extends Controller
         $trip->delete();
         return redirect()->route('trip.index')
             ->with('success', 'Trip is verwijderd.');
+    }
+
+
+    public function book(Request $request, Trip $trip)
+    {
+        $request->validate([
+            'quantity' => 'required|integer|min:1|max:' . $trip->seats,
+        ]);
+
+        $trip->seats -= $request->quantity;
+        $trip->save();
+
+        return redirect()->route('festival.index')
+            ->with('message', 'Trip booked successfully!');
     }
 }
