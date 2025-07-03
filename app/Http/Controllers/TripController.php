@@ -8,6 +8,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Auth;
 
 class TripController extends Controller
 {
@@ -132,6 +133,14 @@ class TripController extends Controller
 
         $trip->seats -= $request->quantity;
         $trip->save();
+
+         // Calculate total points
+    $totalPoints = $trip->points_to_give * $request->quantity;
+
+    // Add points to the authenticated user
+    $user = Auth::user();
+    $user->points += $totalPoints;
+    $user->save();
 
         return redirect()->route('festival.index')
             ->with('message', 'Trip booked successfully!');

@@ -14,7 +14,8 @@
                     <p><strong>Price:</strong> €<span id="total-price">{{ number_format($trip->price, 2) }}</span>
                     <span class="text-gray-500" id="single-price" style="display:none;">{{ $trip->price }}</span>
                     </p>
-                    <p><strong>Points to Give:</strong> {{ $trip->points_to_give }}</p>
+                    <p><strong>Points to Give:</strong><span id="total-points">{{ $trip->points_to_give }}</span>
+                        <span class="text-gray-500" id="single-points" style="display:none;">{{ $trip->points_to_give }}</span></p>
                     <br>
                     <form action="{{ route('trip.book', $trip->id) }}" method="POST">
                         @csrf
@@ -29,12 +30,15 @@
     <script>
         const quantityInput = document.getElementById('quantity');
         const totalPrice = document.getElementById('total-price');
+         const totalPoints = document.getElementById('total-points');
+        const singlePoints = parseInt(document.getElementById('single-points').textContent);
         const singlePrice = parseFloat(document.getElementById('single-price').textContent);
 
         quantityInput.addEventListener('input', function() {
             let qty = parseInt(this.value) || 1;
             let total = (singlePrice * qty).toFixed(2);
             totalPrice.textContent = total;
+            totalPoints.textContent = singlePoints * qty;
         });
     </script>
 </x-layout>
