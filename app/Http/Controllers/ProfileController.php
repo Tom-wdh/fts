@@ -19,8 +19,9 @@ class ProfileController extends Controller
     {
         // Fetch the user's trips and appointments
 
-        
-            return view('profile.index');
+        $user = Auth::user();
+        $trips = $user->trips; // Assumes you have the trips() relationship set up
+        return view('profile.index', compact('trips'));
 
     }
 

@@ -45,4 +45,11 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function trips()
+    {
+        return $this->belongsToMany(\App\Models\Trip::class)
+            ->withPivot('quantity', 'used_points')
+            ->withTimestamps();
+    }
 }

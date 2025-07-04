@@ -17,12 +17,23 @@
                     <p><strong>Points to Give:</strong><span id="total-points">{{ $trip->points_to_give }}</span>
                         <span class="text-gray-500" id="single-points" style="display:none;">{{ $trip->points_to_give }}</span></p>
                     <br>
-                    <form action="{{ route('trip.book', $trip->id) }}" method="POST">
-                        @csrf
-                            <input id="quantity" type="number" name="quantity" min="1" max="{{ $trip->seats }}" value="1" class="border rounded p-2 mb-4 w-full" placeholder="Enter quantity (max {{ $trip->seats }})">
-                        <button type="submit" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
-                            {{ __('Book Trip') }}
-                        </button>
+                    @php
+    $userPoints = Auth::user()->points;
+@endphp
+
+<form id="bookForm" action="{{ route('trip.book', $trip->id) }}" method="POST">
+    @csrf
+    <input id="quantity" type="number" name="quantity" min="1" max="{{ $trip->seats }}" value="1" class="border rounded p-2 mb-4 w-full" placeholder="Enter quantity (max {{ $trip->seats }})">
+    <input type="hidden" name="use_points" id="use_points" value="0">
+    <button type="submit" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
+        {{ __('Book Trip') }}
+    </button>
+    @if($userPoints >= 100)
+        <button type="button" id="discount" class="bg-amber-500 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded ml-2">
+            Use Points
+        </button>
+    @endif
+</form>
                 </div>
             </div>
         </div>
@@ -30,9 +41,12 @@
     <script>
         const quantityInput = document.getElementById('quantity');
         const totalPrice = document.getElementById('total-price');
-         const totalPoints = document.getElementById('total-points');
+        const totalPoints = document.getElementById('total-points');
         const singlePoints = parseInt(document.getElementById('single-points').textContent);
         const singlePrice = parseFloat(document.getElementById('single-price').textContent);
+        const discountButton = document.getElementById('discount');
+        const usePointsInput = document.getElementById('use_points');
+        const bookForm = document.getElementById('bookForm');
 
         quantityInput.addEventListener('input', function() {
             let qty = parseInt(this.value) || 1;
@@ -40,5 +54,16 @@
             totalPrice.textContent = total;
             totalPoints.textContent = singlePoints * qty;
         });
+
+        if (discountButton) {
+            discountButton.addEventListener('click', function(event) {
+                event.preventDefault();
+                let qty = parseInt(quantityInput.value) || 1;
+                let total = (singlePrice * qty * 0.5).toFixed(2);
+                totalPrice.textContent = total;
+                totalPoints.textContent = singlePoints * qty;
+                usePointsInput.value = 1; // Mark that points should be used
+            });
+        }
     </script>
 </x-layout>

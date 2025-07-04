@@ -142,6 +142,16 @@ class TripController extends Controller
     $user->points += $totalPoints;
     $user->save();
 
+    $usePoints = $request->input('use_points') == 1;
+
+    // If the user chooses to use points, deduct 50% of the trip price
+    if ($usePoints && $user->points >= 100) {
+        $user->points -= 100; // Deduct 100 points
+        $user->save();
+    }
+     // Attach trip to user with quantity
+    $user->trips()->attach([$trip->id => ['quantity' => $request->quantity, 'used_points' => $usePoints ? 1 : 0,]]);
+
         return redirect()->route('festival.index')
             ->with('message', 'Trip booked successfully!');
     }

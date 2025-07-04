@@ -8,7 +8,7 @@
         html, body {
             height: 100%;
             margin: 0;
-            overflow: hidden; /* Prevents scrolling */
+ /* Prevents scrolling */
         }
     </style>
 </head>
@@ -16,8 +16,9 @@
     <div class="mx-auto">
         <header class="py-4 bg-indigo-700 flex justify-between items-center">
             <nav class="hidden md:block">
-            </nav>
-            <h1 class="md:text-3xl text-2xl font-bold text-center absolute left-1/2 -translate-x-1/2">Festival Travel System</h1>
+                <a href="{{ route('festival.index') }}" class="text-white hover:text-gray-300 px-4 py-2">Home</a>
+                </nav>
+                <h1 class="md:text-3xl text-2xl font-bold text-center absolute left-1/2 -translate-x-1/2">Festival Travel System</h1>
             <div class="flex justify-end -translate-x-2">
                 <button onclick="toggleMenu()" class="w-2/12 hover:bg-indigo-800 rounded-full accountbtn md:block hidden" type="button">
                     <img src="{{ URL::asset('/build/assets/img/account.png') }}" alt="Account">
@@ -25,7 +26,7 @@
                 <ul id="menuitem" class="hidden absolute bg-white shadow-lg rounded mt-10 h-[0px]">
                     @if (Auth::check())
                         <li class="mr-50">
-                            <a href="{{ route('profile.edit') }}"
+                            <a href="{{ route('profile.index') }}"
                                 class="text-amber-800 hover:text-amber-600 text-center bg-amber-300 px-4 py-2 ml-4 block menutop">Profiel</a>
                         </li>
                         <li>
