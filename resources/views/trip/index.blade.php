@@ -8,7 +8,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="width: 1000px">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <h1 class="text-lg font-semibold mb-4">Trips</h1>
                 <div>
                     <x-table>
                         <x-slot name="thead">
@@ -27,13 +27,17 @@
                                     <td>{{ $trip->city }}</td>
                                     <td>{{ $trip->price }}</td>
                                     <td>{{ $trip->points_to_give }}</td>
-                                    <td><a href="/trip/{{ $trip->id }}/show" class="bg-indigo-500 hover:bg-indigo-700 py-1 px-2 rounded mb-2">{{ __('Boek') }}</a></td>
+                                    <td><a href="/trip/{{ $trip->id }}/show" class="bg-indigo-500 hover:bg-indigo-700 py-0 px-2 rounded mb-2">{{ __('Boek') }}</a></td>
                                    
                                 </tr>
                             @endforeach
                         </x-slot>
                     </x-table>
+                    <br>
+                    @if (Auth::user()->is_admin)
+                        <a href="{{ route('trip.create', ['festival' => $festival]) }}" class="bg-indigo-500 hover:bg-indigo-700 py-1 px-2 rounded">Create Trip</a>
                     {{ $trips->links() }}
+                    @endif
                 </div>
             </div>
         </div>

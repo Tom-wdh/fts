@@ -27,22 +27,22 @@
                     @if (Auth::check())
                         <li class="mr-50">
                             <a href="{{ route('profile.index') }}"
-                                class="text-amber-800 hover:text-amber-600 text-center bg-amber-300 px-4 py-2 ml-4 block menutop">Profiel</a>
+                                class="text-indigo-800 hover:text-indigo-600 text-center bg-indigo-300 px-4 py-2 ml-4 block menutop">Profiel</a>
                         </li>
                         <li>
                             <form method="POST" action="{{  route('logout') }}">
                                 @csrf
-                                <button type="submit" class="text-amber-800 hover:text-amber-600 text-center bg-amber-300 px-4 py-2 ml-4 block menubottom">Log uit</button>
+                                <button type="submit" class="text-indigo-800 hover:text-indigo-600 text-center bg-indigo-300 px-4 py-2 ml-4 block menubottom">Log uit</button>
                             </form>
                         </li>
                     @else
                     <li class="mr-50">
                         <a href="{{ route('register') }}"
-                            class="text-amber-800 hover:text-amber-600 text-center bg-amber-300 px-4 py-2 ml-4 block menutop">Registreer</a>
+                            class="text-indigo-800 hover:text-indigo-600 text-center bg-indigo-300 px-4 py-2 ml-4 block menutop">Registreer</a>
                     </li>
                     <li>
                         <a href="{{ route('login') }}"
-                            class="text-amber-800 hover:text-amber-600 text-center bg-amber-300 px-4 py-2 ml-4 block menubottom">Log in</a>
+                            class="text-indigo-800 hover:text-indigo-600 text-center bg-indigo-300 px-4 py-2 ml-4 block menubottom">Log in</a>
                     </li>
                     @endif
                 </ul>

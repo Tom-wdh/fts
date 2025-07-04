@@ -25,7 +25,7 @@ class TripController extends Controller
             ->latest()
             ->paginate(5);
         // Return the trips to a view
-        return view('trip.index', compact('trips'))
+        return view('trip.index', ['festival' => $festival] , compact('trips'))
             ->with(['i', (request()->input('page', 1) - 1) * 5, 'message' => 'Trips zijn opgehaald']
             );
     }
