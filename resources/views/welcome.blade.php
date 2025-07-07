@@ -13,3 +13,8 @@
             </p>
 
 </x-layout>
+<style>
+    body {
+        overflow: hidden;
+    }
+</style>

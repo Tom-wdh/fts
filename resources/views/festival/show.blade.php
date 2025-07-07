@@ -15,7 +15,7 @@
                     <p><strong>Date:</strong> {{ $festival->date }}</p>
                     <br>
                     <a class='bg-indigo-300 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded mb-4'
-                    href='/trip/{{ $festival->id }}'>Klik hier om trip te bestellen</a>
+                    href='/trip/{{ $festival->id }}'>Click here to view the trips</a>
                 </div>
             </div>
         </div>
